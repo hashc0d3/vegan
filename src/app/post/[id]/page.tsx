@@ -1,27 +1,41 @@
 'use client';
 
-import { useRouter } from "next/navigation";
+import { useParams } from 'next/navigation'; // Импортируем useParams для получения параметров маршрута
 import posts from "@/data/posts.json"; // Подключаем данные с постами
 import { useEffect, useState } from "react";
 
-const PostDetail = ({ params }: { params: { id: string } }) => {
-    const [postId, setPostId] = useState<number | null>(null);
+// Определяем тип поста
+interface Post {
+    id: number;
+    title: string;
+    url: string;
+    image: string;
+    price?: string;
+    stores?: { name: string; link: string }[];
+    ingredients?: string;
+    images?: string[];
+}
+
+const PostDetail = () => {
+    const [post, setPost] = useState<Post | null>(null);
+    const [loading, setLoading] = useState(true);
+    const { id } = useParams();  // Получаем параметр id через useParams
 
     useEffect(() => {
-        // Получаем id из params, который будет доступен для динамических маршрутов
-        const id = params.id ? parseInt(params.id, 10) : null;
-        setPostId(id);
-    }, [params]);
+        if (id) {
+            const postId = typeof id === 'string' ? parseInt(id, 10) : parseInt(id[0], 10);  // Проверяем и обрабатываем id
+            const foundPost = posts.find((post) => post.id === postId);
+            setPost(foundPost || null);
+            setLoading(false);
+        }
+    }, [id]);
 
-    if (postId === null) {
-        return <div>Загрузка...</div>; // Показываем индикатор загрузки до получения id
+    if (loading) {
+        return <div>Загрузка...</div>;  // Показываем индикатор загрузки, пока данные не загружены
     }
 
-    // Ищем пост по id
-    const post = posts.find((post) => post.id === postId);
-
     if (!post) {
-        return <div>Пост не найден</div>; // Если пост не найден, выводим сообщение
+        return <div>Пост не найден</div>;  // Если пост не найден
     }
 
     return (

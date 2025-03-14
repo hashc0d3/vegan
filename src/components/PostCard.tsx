@@ -31,9 +31,8 @@ const PostCard: React.FC<PostCardProps> = ({ post, onClick }) => {
                 <Image src={post.image} alt={post.title} />
             </Card.Section>
             <Text
-                weight={500}
                 size="lg"
-                style={{ marginTop: 10, lineHeight: "1.2" }}
+                style={{ marginTop: 10, lineHeight: "1.2" , width: "500px"}}
                 color="dark"
             >
                 {post.title}
