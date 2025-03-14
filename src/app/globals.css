@@ -1,0 +1,47 @@
+/* src/styles/globals.css */
+body {
+    font-family: Arial, sans-serif;
+    padding: 0;
+    margin: 0;
+}
+
+#post-container {
+    padding: 10px;
+    height: 100vh;
+    overflow-y: auto;
+}
+
+.post-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 колонки */
+    gap: 20px; /* Расстояние между карточками */
+    justify-items: center; /* Выравнивание карточек по центру */
+}
+
+.post-card {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    box-sizing: border-box;
+    text-align: center;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+}
+
+.post-card img {
+    width: 100%;
+    height: auto;
+    margin-bottom: 10px;
+}
+
+@media (max-width: 768px) {
+    .post-cards {
+        grid-template-columns: repeat(2, 1fr); /* На малых экранах 2 колонки */
+    }
+}
+
+@media (max-width: 480px) {
+    .post-cards {
+        grid-template-columns: 1fr; /* На очень малых экранах 1 колонка */
+    }
+}

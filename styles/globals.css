@@ -1,0 +1,26 @@
+/* src/styles/globals.css */
+.post-detail {
+    padding: 20px;
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.post-detail h1 {
+    font-size: 2rem;
+}
+
+.post-detail img {
+    width: 100%;
+    max-width: 600px;
+    margin: 20px 0;
+}
+
+.post-detail ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.post-detail ul li {
+    margin: 5px 0;
+}
